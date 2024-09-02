@@ -70,6 +70,10 @@ public class Main {
         if (firstPart.length() + secondPart.length() > 20) {
             throw new StringMoreThen10("Длинна аргумента больше 10знаков");
         }
+        if (firstPart.length()>10 || secondPart.length()>10){
+            throw new StringMoreThen10("строка не может быть длинее 10 знаков ");
+        }
+
     }
 
     public static void IsDigit(String a) throws FirstStringMustBeString {
