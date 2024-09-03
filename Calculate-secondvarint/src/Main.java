@@ -9,7 +9,7 @@ public class Main {
     public static String getString() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        input = input.replaceAll(" ", "");
+        //input = input.replaceAll(" ", "");
 
         return input;
     }
@@ -28,7 +28,8 @@ public class Main {
     public static String firstPart;
     // Объявляем строку для второй части сложения-вычитания
     public static String secondPart;
-
+    // Обявлем переменную для проверки , является ли первая часть строкой
+    public static String IsDigitfirstpart;
     // Определяем знак операации.
     public static void getOperation() {
         for (char c : array) {
@@ -47,8 +48,9 @@ public class Main {
             if (phrase.contains(c)) {
                 if (c.equals(simbolsOfOperation[0]) || c.equals(simbolsOfOperation[1])) {
                     int index = phrase.indexOf(c);
-                    firstPart = phrase.substring(1, index - 1);
-                    secondPart = phrase.substring(index + 2, phrase.length() - 1);
+                    firstPart = phrase.substring(1, index - 2);
+                    secondPart = phrase.substring(index + 3, phrase.length() - 1);
+
                     isoperation = true;
                     break;
                 }
@@ -77,15 +79,18 @@ public class Main {
     }
 
     public static void IsDigit(String a) throws FirstStringMustBeString {
-        boolean digit = false;
-        for (char c : a.toCharArray()) {
-            if (Character.isDigit(c)) {
-                digit = true;
-            } else {
-                digit = false;
-            }
-        }
-        if (digit) throw new FirstStringMustBeString("Первый аргумент должен быть строкой");
+        Boolean digit = false;
+        if( IsDigitfirstpart instanceof String )
+        { digit = true;}
+//        boolean digit = false;
+//        for (char c : a.toCharArray()) {
+//            if (Character.isDigit(c)) {
+//                digit = true;
+//            } else {
+//                digit = false;
+//            }
+//        }
+       if (digit) throw new FirstStringMustBeString("Первый аргумент должен быть строкой");
     }
 
     public static void main(String[] args) throws NoSuchOperationException, StringMoreThen10, FirstStringMustBeString {
@@ -94,6 +99,7 @@ public class Main {
         getChars(inputSting);
         getOperation();
         getParts(inputSting);
+        System.out.println(firstPart + " " + secondPart);
         IsDigit(firstPart);
 
         calculator.calculate(operation);

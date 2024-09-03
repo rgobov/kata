@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Calculator {
     //складываем
     public void addition(String a, String b) {
@@ -7,6 +9,7 @@ public class Calculator {
 
     public void subtract(String a, String b) {
         String result;
+
         if (a.contains(b)) {
             result = a.replace(b, "");
         } else {
@@ -25,7 +28,12 @@ public class Calculator {
             System.out.println("Второй аргумент должен быть числом от ноля до 10");
             System.exit(1);
         }
-        String result = a.repeat(Multiplicator);
+
+        StringBuilder stringBuilder = new StringBuilder(a);
+        // stringBuilder.deleteCharAt(0);
+        stringBuilder.deleteCharAt(a.length()-1);
+        String tempresult = stringBuilder.toString();
+        String result = tempresult.repeat(Multiplicator);
         if (result.length() > 40) {
             result = result.substring(0, 40);
             result = String.format("\"%s...\"", result);
